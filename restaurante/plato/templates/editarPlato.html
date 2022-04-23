@@ -1,0 +1,31 @@
+{% extends "./base.html" %}
+{% block title %} Edicion de platos {% endblock %}
+{% block body %}
+<h2>Editar plato</h2>
+<div class="card">
+    <div class="card-body"> 
+        <form action="/editarPlato/" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <input type="text" id="txtid" name="txtid" value="{{plato.id}}" class="form-control" placeholder="id" minlength="1" maxlength="6" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="txtnombre" name="txtnombre" value="{{plato.nombre}}" class="form-control" placeholder="nombre" minlength="1" maxlength="30" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="txtcategoria" name="txtcategoria" value="{{plato.categoria}}" class="form-control" placeholder="categoria" minlength="1" maxlength="30" required>
+            </div>
+            <div class="form-group">
+                <input type="number" id="tiempoP" name="tiempoP" value="{{plato.tiempo_preparaciona}}" class="form-control" placeholder="tiempo_preparacion" min="1" max="200" required> 
+            </div>
+            <select type="text" id="ingrediente" name="id-ingrediente" class="form-control" placeholder="ingrediente" min="1" max="200" required>
+                    {% for i in alimentos %}
+                    <option value={{i.id}}>{{i.nombre}}</option>
+                    {% endfor %}
+            </select>  
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

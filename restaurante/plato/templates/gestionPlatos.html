@@ -1,0 +1,65 @@
+{% extends "./base.html" %}
+{% block title %} Gestion de platos {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-lg-4 col-xl-4">
+        <h2>Gestion platos</h2>
+        <div class="card">
+            <div class="card-body"> 
+                <form action="/registrarPlato/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtid" name="txtid" class="form-control" placeholder="id" minlength="1" maxlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="nombre" minlength="1" maxlength="30" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtcategoria" name="txtcategoria" class="form-control" placeholder="categoria" minlength="1" maxlength="30" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="tiempoP" name="tiempoP" class="form-control" placeholder="tiempo_preparacion" min="1" max="200" required> 
+                    </div>
+                    <select type="text" id="ingrediente" name="id-ingrediente" class="form-control" placeholder="ingrediente" min="1" max="200" required>
+                            {% for i in alimentos %}
+                            <option value={{i.id}}>{{i.nombre}}</option>
+                            {% endfor %}
+                    </select>  
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-sm-12 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <h1>Listado de Platos</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Categoria</th>
+                        <th>Tiempo preparacion</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in platos %}
+                    <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.nombre}}</td>
+                        <td>{{i.categoria}}</td>
+                        <td>{{i.tiempo_preparaciona}}</td>
+                        <td><a href="/edicionPlato/{{i.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="/eliminarPlato/{{i.id}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

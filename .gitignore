@@ -1,0 +1,4 @@
+/venv
+restaurante/plato/__pycache__
+restaurante/plato/migrations/__pycache__
+restaurante/restaurante/__pycache__
