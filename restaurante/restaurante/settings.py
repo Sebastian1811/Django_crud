@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'plato.apps.PlatoConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
